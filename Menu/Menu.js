@@ -1,42 +1,39 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out"
 ];
-function menuComponent(items){
-  let menuDiv = document.createElement('div');
-  menuDiv.classList.add('menu');
+function menuComponent(items) {
+  let menuDiv = document.createElement("div");
+  menuDiv.classList.add("menu");
 
-  let newList = document.createElement('ul');
+  let newList = document.createElement("ul");
 
-  items.forEach(function(item, index, array){
-    let listItem = document.createElement('li');
+  items.forEach(function(item, index, array) {
+    let listItem = document.createElement("li");
     listItem.innerText = item;
     newList.appendChild(listItem);
   });
-  
-  menuDiv.appendChild(newList);
-  
-  return menuDiv;
 
+  menuDiv.appendChild(newList);
+
+  return menuDiv;
 }
 
 let myMenu = menuComponent(menuItems);
 
-let menuImg = document.querySelector('.menu-button');
-menuImg.addEventListener("click", event =>{
-  myMenu.classList.toggle('menu--open');
+let menuImg = document.querySelector(".menu-button");
+menuImg.addEventListener("click", event => {
+  myMenu.classList.toggle("menu--open");
 });
 
-
-let headerDiv = document.querySelector('.header');
+let headerDiv = document.querySelector(".header");
 headerDiv.prepend(myMenu);
-
 
 /* 
 

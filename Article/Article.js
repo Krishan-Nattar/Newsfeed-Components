@@ -172,7 +172,6 @@ submitButton.addEventListener("click", event=>{
 });
 
 let form = document.querySelector('#create-article');
-// console.log(form);
 let formTitle = document.querySelector('.form-title');
 let formDate = document.querySelector('.form-date');
 
