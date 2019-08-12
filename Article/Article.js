@@ -3,7 +3,7 @@
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
-    date: 'Nov 5th, 2018',
+    date: "Nov 5th, 2018",
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
         moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
         watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
@@ -23,8 +23,8 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
-    title: 'Javascript and You, ES6',
-    date: 'May 7th, 2019',
+    title: "Javascript and You, ES6",
+    date: "May 7th, 2019",
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
         Hermione spell bezoar Scabbers. Peruvian-Night-Powder werewolf, Dobby pear-tickle half-moon-glasses, Knight-Bus. Padfoot
         snargaluff seeker: Hagrid broomstick mischief managed. Snitch Fluffy rock-cake, 9 ¾ dress robes I must not tell lies. Mudbloods
@@ -43,8 +43,8 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
-    title: 'React vs Angular vs Vue',
-    date: 'June 7th, 2019',
+    title: "React vs Angular vs Vue",
+    date: "June 7th, 2019",
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
         elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
@@ -71,8 +71,8 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
-    title: 'Professional Software Development in 2019',
-    date: 'Jan 1st, 2019',
+    title: "Professional Software Development in 2019",
+    date: "Jan 1st, 2019",
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
           hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
           Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "My Time After Lambda",
+    date: "May 30th, 2020",
+    firstParagraph: `Warp cog maroon Sink me fathom gangplank Cat o'nine tails nipperkin aft port. Lanyard Spanish Main strike colors killick jack smartly lugsail scuppers league gally. No prey, no pay fire in the hole bilge rat mizzenmast Sea Legs scourge of the seven seas cutlass spirits tender topsail.`,
+
+    secondParagraph: `Quarterdeck scuttle rutters Pieces of Eight hempen halter bilge rat black spot come about salmagundi Sea Legs. Clap of thunder cackle fruit lookout parrel bounty hempen halter avast lanyard shrouds chase. Run a shot across the bow Brethren of the Coast six pounders Pirate Round no prey, no pay capstan plunder barque Gold Road Arr.`,
+
+    thirdParagraph: `Schooner sloop pinnace squiffy starboard loaded to the gunwalls nipper mizzenmast Pieces of Eight stern. Quarter pirate Chain Shot nipper port dance the hempen jig run a shot across the bow pinnace schooner draught. Dance the hempen jig Davy Jones' Locker deadlights rigging parrel pillage salmagundi spirits heave to interloper.`
   }
 ];
 
@@ -112,3 +121,90 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+function componentCreator(obj) {
+  let article = document.createElement("div");
+  article.classList.add("article");
+
+  let h2 = document.createElement("h2");
+  h2.innerText = obj.title;
+
+  let date = document.createElement("p");
+  date.classList.add("date");
+  date.innerText = obj.date;
+
+  let p1 = document.createElement("p");
+  p1.innerText = obj.firstParagraph;
+
+  let p2 = document.createElement("p");
+  p2.innerText = obj.secondParagraph;
+
+  let p3 = document.createElement("p");
+  p3.innerText = obj.thirdParagraph;
+
+  let spanItem = document.createElement("span");
+  spanItem.classList.add("expandButton");
+  spanItem.innerText = "Toggle";
+  spanItem.addEventListener("click", event => {
+    article.classList.toggle("article-open");
+  });
+
+  article.appendChild(h2);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(spanItem);
+
+  return article;
+}
+
+const pageArticleDiv = document.querySelector(".articles");
+
+let allArticles = data.forEach((item, index, array) => {
+  pageArticleDiv.appendChild(componentCreator(item));
+});
+
+const submitButton = document.querySelector('.btn-submit');
+submitButton.addEventListener("click", event=>{
+  event.preventDefault();
+  addNewArticle();
+});
+
+let form = document.querySelector('#create-article');
+let formTitle = document.querySelector('.form-title');
+let formDate = document.querySelector('.form-date');
+
+let formp1 = document.querySelector('.form-p1');
+let formp2 = document.querySelector('.form-p2');
+let formp3 = document.querySelector('.form-p3');
+
+function addNewArticle(){
+if(formTitle.value =="" || formDate.value =="" || formp1.value==""){
+  alert('You must fill out at least the first 3 fields');
+} else{
+
+
+
+  let formObj = {
+    title: formTitle.value,
+    date: formDate.value,
+    firstParagraph: formp1.value,
+    secondParagraph: formp2.value,
+    thirdParagraph: formp3.value
+  }
+
+
+let myNewArticle = componentCreator(formObj);
+pageArticleDiv.appendChild(myNewArticle);
+
+form.reset();
+
+
+
+
+}
+ 
+
+};
+
